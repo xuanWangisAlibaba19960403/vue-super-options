@@ -1,12 +1,24 @@
 {
   "name": "vue-super-options",
-  "version": "1.0.3",
+  "version": "1.0.7",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "vue",
+    "super",
+    "vue.extend"
+  ],
+  "homepage": "https://github.com/xuanWangisAlibaba19960403/vue-super-options#readme",
+  "bugs": {
+    "url": "https://github.com/xuanWangisAlibaba19960403/vue-super-options/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xuanWangisAlibaba19960403/vue-super-options.git"
+  },
   "author": "wangxuan",
   "license": "ISC"
 }

@@ -1,7 +1,11 @@
 import { isFunction, isPlainObject } from "./tool"
+const single = new Map()
 export default function install(Vue) {
   Object.defineProperty(Vue.prototype, '$super', {
-    get(name) {
+    get() {
+      if (single.has(this)) {
+        return single.get(this)
+      }
       const $super = this.$options.super
       if (!$super) {
         return null
@@ -12,9 +16,14 @@ export default function install(Vue) {
       if (!isPlainObject($super.methods)) {
         return null
       }
-      return new Proxy($super.methods,
+      const { proxy, revoke } = Proxy.revocable($super.methods,
         {
           get: (target, property) => {
+            // 销毁 防止无用对象占据内存
+            if (property === 'destroy') {
+              single.delete(this)
+              return revoke
+            }
             if (isFunction(target[property])) {
               return target[property].bind(this)
             }
@@ -22,6 +31,8 @@ export default function install(Vue) {
           }
         }
       )
+      single.set(this, proxy)
+      return proxy
     }
   })
 }

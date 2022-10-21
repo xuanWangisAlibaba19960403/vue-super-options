@@ -28,3 +28,21 @@ const Child = Parent.extend({
   },
 });
 ```
+
+离开页面请销毁 proxy
+
+```js
+const Child = Parent.extend({
+  super: Parent,
+  beforeDestroy() {
+    // 主动清除跟无用proxy的依赖
+    this.$super.destroy();
+  },
+  methods: {
+    doTheThing: function () {
+      this.$super.doTheThing();
+      console.log("child doTheThing");
+    },
+  },
+});
+```
