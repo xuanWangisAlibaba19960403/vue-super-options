@@ -1,4 +1,8 @@
-import { isFunction, isPlainObject } from "./tool"
+import {
+  isFunction,
+  isPlainObject,
+  $DESTROY
+} from "./tool"
 const single = new Map()
 export default function install(Vue) {
   Object.defineProperty(Vue.prototype, '$super', {
@@ -6,7 +10,8 @@ export default function install(Vue) {
       if (single.has(this)) {
         return single.get(this)
       }
-      const $super = this.$options.super
+      // $super规避vue本身super
+      const $super = this.$options.$super
       if (!$super) {
         return null
       }
@@ -20,7 +25,7 @@ export default function install(Vue) {
         {
           get: (target, property) => {
             // 销毁 防止无用对象占据内存
-            if (property === 'destroy') {
+            if (property === $DESTROY) {
               single.delete(this)
               return revoke
             }

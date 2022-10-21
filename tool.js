@@ -5,3 +5,5 @@ export const isPlainObject = function(target) {
 export const isFunction = function (fn) {
   return typeof fn === 'function'
 }
+
+export const $DESTROY = '$destroy'

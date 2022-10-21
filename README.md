@@ -19,7 +19,7 @@ const Parent = Vue.extend({
 });
 
 const Child = Parent.extend({
-  super: Parent,
+  $super: Parent,
   methods: {
     doTheThing: function () {
       this.$super.doTheThing();
@@ -33,10 +33,11 @@ const Child = Parent.extend({
 
 ```js
 const Child = Parent.extend({
-  super: Parent,
+  $super: Parent,
   beforeDestroy() {
-    // 主动清除跟无用proxy的依赖
-    this.$super.destroy();
+    // $destroy规避同名方法
+    // 主动清除无用proxy的依赖
+    this.$super.$destroy();
   },
   methods: {
     doTheThing: function () {
