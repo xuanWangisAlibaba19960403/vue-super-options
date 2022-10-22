@@ -1,10 +1,11 @@
 {
   "name": "vue-super-options",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\"",
+    "release": "np"
   },
   "keywords": [
     "vue",
@@ -20,5 +21,8 @@
     "url": "git+https://github.com/xuanWangisAlibaba19960403/vue-super-options.git"
   },
   "author": "wangxuan",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "np": "^7.6.2"
+  }
 }
