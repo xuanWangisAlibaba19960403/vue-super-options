@@ -3,13 +3,15 @@
 推荐使用 vue-super
 
 > vue-super is tested against vue@2
-> Example:
+> Example1:
 
 ```js
 import Vue from "vue";
 import VueSuper from "Vue-super-options";
 Vue.use(VueSuper);
+```
 
+```js
 const Parent = Vue.extend({
   methods: {
     doTheThing: function () {
@@ -27,6 +29,30 @@ const Child = Parent.extend({
     },
   },
 });
+```
+
+> Example2:
+
+```js
+import Parent from "@/components/parent.vue";
+export default {
+  methods: {
+    doTheThing: function () {
+      console.log("father doTheThing");
+    },
+  },
+};
+
+export default {
+  extends: Parent,
+  $super: Parent,
+  methods: {
+    doTheThing: function () {
+      this.$super.init()
+      console.log("child doTheThing");
+    },
+  },
+};
 ```
 
 离开页面请销毁 proxy
